@@ -1,9 +1,9 @@
-interface OrderTerminalAccountType {
+export interface OrderTerminalAccountType {
     name: string,
     oguid: string
 }
 
-interface CreatedUserType {
+export interface CreatedUserType {
     surname: string,
     name: string,
     patronymic: string,

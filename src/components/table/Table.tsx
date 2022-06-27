@@ -9,6 +9,7 @@ interface TableProps<T extends object> {
 }
 
 function Table<T extends object>({columns, data}: TableProps<T>) {
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -17,14 +18,15 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
         prepareRow
     } = useTable({columns, data})
 
+
     return (
         <table {...getTableProps()} className={s.table}>
-            <thead>
+            <thead >
             {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
+                <tr {...headerGroup.getHeaderGroupProps()} className={s.HeaderColumns}>
                     {
                         headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                            <th {...column.getHeaderProps()} className={s.HeaderColumn}>{column.render('Header')}</th>
                         ))
                     }
                 </tr>
@@ -35,10 +37,10 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
             {
                 rows.map((row) => {
                     prepareRow(row)
-                    return <tr {...row.getRowProps()}>
+                    return <tr {...row.getRowProps()} className={s.BodyColumns}>
                         {
                             row.cells.map((cell) => {
-                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                return <td {...cell.getCellProps()} className={s.BodyColumn}>{cell.render('Cell')}</td>
                             })
                         }
                     </tr>

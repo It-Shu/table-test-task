@@ -2,54 +2,45 @@ import {CustomColumn} from "./types";
 import {useMemo} from "react";
 import Table from "./Table";
 import {useData} from "./hooks/useData";
+import DataCell from "./TableCell/DataCell";
+import NumberAndDate from "./TableCell/NumberAndDate";
 
 function DataTable() {
-    
 
-    const {data} = useData()
-    const columns: CustomColumn[] = useMemo(() => [
+    const {mockData} = useData()
+    const columns: CustomColumn[] = [
         {
             Header: 'Номер/Дата',
-            accessor: 'id' && 'created_date',
-            Cell: data.map(d => (
-                <div key={d.id + 1}>
-                    <div>{d.id}</div>
-                    <div>{d.created_date}</div>
-                </div>
+            accessor: 'id',
+            Cell: mockData.map(d => (
+                <NumberAndDate id={d.id} created_date={d.created_date}/>
             ))
         },
         {
             Header: 'Тип задания/Автор',
-            accessor: 'order_type' && 'created_user',
-            Cell: data.map(d => (
-                <div key={d.id + 1}>
-                    <div>{d.order_type.name}</div>
-                    <div>{d.created_user.name}</div>
-                </div>
+            accessor: 'order_type',
+            Cell: mockData.map(d => (
+                <DataCell id={d.id} firstRowData={d.order_type.name} secondRowData={d.created_user.name}/>
             ))
         },
         {
             Header: 'Аккаунт/Терминал',
-            accessor: 'account' && 'terminal',
-            Cell: data.map(d => (
-                <div key={d.id + 1}>
-                    <div>{d.account.name}</div>
-                    <div>{d.terminal.name}</div>
-                </div>
+            accessor: 'account',
+            Cell: mockData.map(d => (
+                <DataCell id={d.id} firstRowData={d.account.name} secondRowData={d.terminal.name}/>
             ))
         },
         {
             Header: 'Статус',
             accessor: 'status',
-            Cell: data.map(d => (
-                <div key={d.id + 1}>
-                    <div>{d.status}</div>
-                </div>
+            Cell: mockData.map(d => (
+                <DataCell id={d.id} firstRowData={d.status}/>
             ))
         },
-    ], [])
+    ]
 
-    return <Table data={data} columns={columns}/>
+    const mockColumns = useMemo(() => columns, [])
+    return <Table data={mockData} columns={columns}/>
 
 }
 

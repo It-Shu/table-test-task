@@ -4,14 +4,14 @@ import {orderAPI} from "../../../api/table-api";
 
 export const useData = () => {
 
-    const [mockData, setMockData] = useState<TableResponseType[]>([])
+    const [data, setData] = useState<TableResponseType[]>([])
 
     useEffect(() => {
         orderAPI.getOrder()
             .then((res) => {
-                setMockData(res.data)
+                setData(res.data)
             })
     }, [])
-    const data = useMemo(() => mockData, [])
-    return {data}
+    const mockData = useMemo(() => data, [data])
+    return {mockData}
 }
