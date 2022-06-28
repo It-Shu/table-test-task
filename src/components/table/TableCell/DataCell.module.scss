@@ -1,5 +1,7 @@
 .dataCell {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 50px;
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
 }
