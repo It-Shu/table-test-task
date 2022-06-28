@@ -5,11 +5,11 @@ import {useData} from "./hooks/useData";
 import {TableResponseType} from "../../api/types";
 import NumberAndDate from "./TableCell/NumberAndDate";
 import DataCell from "./TableCell/DataCell";
+import s from './TableCell/DataCell.module.scss'
 
 function DataTable() {
 
-    const {paginateData, paginate, onSelectChangeHandler, currentPage, countPerPage} = useData()
-    // const {data} = useData()
+    const {mockData} = useData()
 
     const staticColumns: CustomColumn<TableResponseType>[] =
         [
@@ -23,43 +23,46 @@ function DataTable() {
             },
             {
                 Header: 'Тип задания/Автор',
-                accessor:'order_type',
+                accessor: 'order_type',
                 Cell: ({row}) => {
-                    return <DataCell
-                        surname={row.original.created_user.surname}
-                        name={row.original.created_user.name}
-                        patronymic={row.original.created_user.patronymic}
-                        firstRowData={row.original.order_type.name}
-                    />
+                    return <div className={s.dataCell}>
+                        <DataCell
+                            surname={row.original.created_user.surname}
+                            name={row.original.created_user.name}
+                            patronymic={row.original.created_user.patronymic}
+                            firstRowData={row.original.order_type.name}
+                        />
+                    </div>
                 }
             },
             {
                 Header: 'Аккаунт/Терминал',
                 accessor: 'account',
                 Cell: ({row}) => {
-                    return <DataCell firstRowData={row.original.account.name} secondRowData={row.original.terminal.name}/>
+                    const ellipsis = row.original.account.name.substring(0,6) + '...'
+
+                    return <div className={s.dataEllipsis}>
+                        <DataCell firstRowData={row.original.account.name} secondRowData={row.original.terminal.name}/>
+                    </div>
                 }
             },
             {
                 Header: 'Статус',
                 accessor: 'status',
                 Cell: ({row}) => {
-                    return <DataCell  firstRowData={row.original.status}/>
+                    return <div className={s.dataCell}>
+                        <DataCell status={row.original.status}/>
+                    </div>
+
                 }
             },
         ]
 
-    const columns = useMemo(() => staticColumns,[staticColumns])
-    const ordersData = useMemo(() => paginateData,[paginateData])
+    const columns = useMemo(() => staticColumns, [staticColumns])
+    const data = useMemo(() => mockData, [mockData])
 
     return <div>
-        <Table data={ordersData} columns={columns}/>
-        {/*<Pagination*/}
-        {/*    totalCount={paginateData.length}*/}
-        {/*    currentPage={currentPage}*/}
-        {/*    countPerPage={countPerPage}*/}
-        {/*    onChange={paginate}*/}
-        {/*/>*/}
+        <Table data={data} columns={columns}/>
     </div>
 }
 

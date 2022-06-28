@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+import { convertingDateDataToCurrentDate } from '../tools';
 import s from "./DataCell.module.scss";
 
 interface NumberAndDateType {
@@ -8,12 +9,10 @@ interface NumberAndDateType {
 
 const NumberAndDate: FC<NumberAndDateType> = (props) => {
 
-    const currentDate = new Date(props.created_date).toLocaleString()
-
     return (
         <div className={s.dataCell}>
             <div>{props.id}</div>
-            <div>{currentDate}</div>
+            <div className={s.secondRowCell}>{convertingDateDataToCurrentDate(props.created_date)}</div>
         </div>
     );
 };
