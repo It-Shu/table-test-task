@@ -16,9 +16,6 @@ function DataTable() {
             {
                 Header: 'Номер/Дата',
                 accessor: 'id',
-                // Cell: data.map(d => (
-                //     <NumberAndDate id={row.original.id} created_date={row.original.created_date}/>
-                // ))
                 Cell: ({row}) => {
                     return <NumberAndDate id={row.original.id} created_date={row.original.created_date}/>
                 }
@@ -27,19 +24,18 @@ function DataTable() {
             {
                 Header: 'Тип задания/Автор',
                 accessor:'order_type',
-                // Cell: data.map(d => (
-                //     <DataCell id={d.id} firstRowData={row.original.order_type.name} secondRowData={row.original.created_user.surname}/>
-                // ))
                 Cell: ({row}) => {
-                    return <DataCell firstRowData={row.original.order_type.name} secondRowData={row.original.created_user.surname}/>
+                    return <DataCell
+                        surname={row.original.created_user.surname}
+                        name={row.original.created_user.name}
+                        patronymic={row.original.created_user.patronymic}
+                        firstRowData={row.original.order_type.name}
+                    />
                 }
             },
             {
                 Header: 'Аккаунт/Терминал',
                 accessor: 'account',
-                // Cell: data.map(d => (
-                //     <DataCell id={d.id} firstRowData={d.account.name} secondRowData={d.terminal.name}/>
-                // ))
                 Cell: ({row}) => {
                     return <DataCell firstRowData={row.original.account.name} secondRowData={row.original.terminal.name}/>
                 }
@@ -47,9 +43,6 @@ function DataTable() {
             {
                 Header: 'Статус',
                 accessor: 'status',
-                // Cell: data.map(d => (
-                //     <DataCell id={d.id} firstRowData={d.status}/>
-                // ))
                 Cell: ({row}) => {
                     return <DataCell  firstRowData={row.original.status}/>
                 }
