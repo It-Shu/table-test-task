@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { convertingDateDataToCurrentDate } from '../tools';
+import { convertingDateDataToCurrentDate } from '../../tools';
 import s from "./DataCell.module.scss";
 
 interface NumberAndDateType {
@@ -8,10 +8,10 @@ interface NumberAndDateType {
 }
 
 const NumberAndDate: FC<NumberAndDateType> = (props) => {
-
+    const numberOfId = `№${props.id}`
     return (
         <div className={s.dataCell}>
-            <div>{props.id}</div>
+            <div>{numberOfId}</div>
             <div className={s.secondRowCell}>{convertingDateDataToCurrentDate(props.created_date)}</div>
         </div>
     );

@@ -1,4 +1,4 @@
-export const convertingNameToInitials = (name: string, surname: string | undefined, patronymic: string): string => {
+export const convertingNameToInitials = (name: string, surname: string, patronymic: string): string => {
     const firstLetterOfName = name.charAt(0)
     const firstLetterOfPatronymic = patronymic.charAt(0)
     return `${surname} ${firstLetterOfName}.${firstLetterOfPatronymic}.`

@@ -3,9 +3,11 @@ import React, {useMemo} from "react";
 import Table from "./Table";
 import {useData} from "./hooks/useData";
 import {TableResponseType} from "../../api/types";
-import NumberAndDate from "./TableCell/NumberAndDate";
-import DataCell from "./TableCell/DataCell";
-import s from './TableCell/DataCell.module.scss'
+import NumberAndDate from "./TableCell/cell-components/NumberAndDate";
+import AccountAndTerminal from "./TableCell/cell-components/AccountAndTerminal";
+import s from './TableCell/cell-components/DataCell.module.scss'
+import Status from "./TableCell/cell-components/Status";
+import OrderTypeAndAuthor from "./TableCell/cell-components/OrderTypeAndAuthor";
 
 function DataTable() {
 
@@ -14,7 +16,7 @@ function DataTable() {
     const staticColumns: CustomColumn<TableResponseType>[] =
         [
             {
-                Header: 'Номер/Дата',
+                Header: 'Номер / Дата',
                 accessor: 'id',
                 Cell: ({row}) => {
                     return <NumberAndDate id={row.original.id} created_date={row.original.created_date}/>
@@ -22,28 +24,24 @@ function DataTable() {
 
             },
             {
-                Header: 'Тип задания/Автор',
+                Header: 'Тип задания / Автор',
                 accessor: 'order_type',
                 Cell: ({row}) => {
-                    return <div className={s.dataCell}>
-                        <DataCell
-                            surname={row.original.created_user.surname}
-                            name={row.original.created_user.name}
-                            patronymic={row.original.created_user.patronymic}
-                            firstRowData={row.original.order_type.name}
-                        />
-                    </div>
+                    return <OrderTypeAndAuthor
+                        surname={row.original.created_user.surname}
+                        name={row.original.created_user.name}
+                        patronymic={row.original.created_user.patronymic}
+                        orderType={row.original.order_type.name}
+                    />
                 }
             },
             {
-                Header: 'Аккаунт/Терминал',
+                Header: 'Аккаунт / Терминал',
                 accessor: 'account',
                 Cell: ({row}) => {
-                    const ellipsis = row.original.account.name.substring(0,6) + '...'
+                    return <AccountAndTerminal firstRowData={row.original.account.name}
+                                               secondRowData={row.original.terminal.name}/>
 
-                    return <div className={s.dataEllipsis}>
-                        <DataCell firstRowData={row.original.account.name} secondRowData={row.original.terminal.name}/>
-                    </div>
                 }
             },
             {
@@ -51,7 +49,7 @@ function DataTable() {
                 accessor: 'status',
                 Cell: ({row}) => {
                     return <div className={s.dataCell}>
-                        <DataCell status={row.original.status}/>
+                        <Status status={row.original.status}/>
                     </div>
 
                 }
