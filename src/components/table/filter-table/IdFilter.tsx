@@ -15,7 +15,7 @@ const IdFilter = ({filter, setFilter}: GlobalFilterType) => {
     return (
         <span className={s.filterContainer}>
             Поиск номера: {' '}
-            <input className={s.filterInput} value={filter || ''} onChange={getFilterValue} placeholder={'введите номер...'}/>
+            <input type={"number"} className={s.filterInput} value={filter || ''} onChange={getFilterValue} placeholder={'введите номер...'}/>
         </span>
     );
 };

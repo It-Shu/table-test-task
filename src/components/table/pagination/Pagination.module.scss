@@ -1,0 +1,32 @@
+.paginationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .goToPageInput{
+    width: 50px;
+    margin-right: 10px;
+  }
+  .pageIndex{
+    margin-right: 10px;
+  }
+  .buttonsContainer{
+    margin-right: 10px;
+    .paginationButton{
+      //color: black;
+      //float: left;
+      padding: 4px 16px;
+      text-decoration: none;
+      background-color: #fff;
+      border: 1px solid #ddd;
+
+    }
+    :hover {
+      background-color: #caf5ca;
+    }
+    :disabled{
+      background-color: #fff;
+    }
+  }
+
+
+}
