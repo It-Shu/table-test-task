@@ -11,7 +11,7 @@ const AccountAndTerminal: FC<DataCellType> = (props) => {
     return (
         <div className={s.accountContainer}>
             <div className={s.dataEllipsis}>{props.firstRowData}</div>
-            <div className={s.secondRowCell}>{props.secondRowData}</div>
+            <div className={s.subInfoRow}>{props.secondRowData}</div>
         </div>
 
     );

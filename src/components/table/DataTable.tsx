@@ -48,7 +48,7 @@ function DataTable() {
                 Header: 'Статус',
                 accessor: 'status',
                 Cell: ({row}) => {
-                    return <div className={s.dataCell}>
+                    return <div className={s.dataCellContainer}>
                         <Status status={row.original.status}/>
                     </div>
 

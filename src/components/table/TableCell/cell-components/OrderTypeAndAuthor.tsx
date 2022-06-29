@@ -13,9 +13,9 @@ const OrderTypeAndAuthor = (props: OrderTypeAndAuthorType) => {
 
 
     return (
-        <div className={s.dataCell}>
+        <div className={s.dataCellContainer}>
             <div>{props.orderType}</div>
-            <div className={s.secondRowCell}>{convertingNameToInitials(props.name, props.surname, props.patronymic)}</div>
+            <div className={s.subInfoRow}>{convertingNameToInitials(props.name, props.surname, props.patronymic)}</div>
         </div>
     );
 };

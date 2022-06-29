@@ -10,9 +10,9 @@ interface NumberAndDateType {
 const NumberAndDate: FC<NumberAndDateType> = (props) => {
     const numberOfId = `№${props.id}`
     return (
-        <div className={s.dataCell}>
+        <div className={s.dataCellContainer}>
             <div>{numberOfId}</div>
-            <div className={s.secondRowCell}>{convertingDateDataToCurrentDate(props.created_date)}</div>
+            <div className={s.subInfoRow}>{convertingDateDataToCurrentDate(props.created_date)}</div>
         </div>
     );
 };
