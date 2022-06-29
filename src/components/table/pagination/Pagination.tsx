@@ -65,7 +65,7 @@ const Pagination = (
                 <button onClick={getLastPage} disabled={!canNextPage} className={s.paginationButton}>❯❯</button>
             </div>
             по
-            <select value={pageSize} onChange={getPageSize}>
+            <select value={pageSize} onChange={getPageSize} className={s.selectPageSize}>
                 {
                     PAGE_COUNT.map(pageSize => (
                         <option value={pageSize} key={pageSize}>
