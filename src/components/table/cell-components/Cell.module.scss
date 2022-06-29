@@ -1,0 +1,23 @@
+.dataCellContainer {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.accountContainer {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+
+.subInfoRow {
+  font-size: 14px;
+  color: #8a8a8a;
+  opacity: 90%;
+}
+
+.dataEllipsis {
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
