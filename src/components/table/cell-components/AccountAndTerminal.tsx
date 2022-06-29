@@ -2,16 +2,16 @@ import React, {FC} from 'react';
 import s from './Cell.module.scss'
 
 interface DataCellType {
-    firstRowData?: string
-    secondRowData?: string
+    account?: string
+    terminal?: string
 }
 
 const AccountAndTerminal: FC<DataCellType> = (props) => {
 
     return (
         <div className={s.accountContainer}>
-            <div className={s.dataEllipsis}>{props.firstRowData}</div>
-            <div className={s.subInfoRow}>{props.secondRowData}</div>
+            <div className={s.dataEllipsis}>{props.account}</div>
+            <div className={s.subInfoRow}>{props.terminal}</div>
         </div>
 
     );

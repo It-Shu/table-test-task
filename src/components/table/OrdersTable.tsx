@@ -40,8 +40,8 @@ function OrdersTable() {
                 Header: 'Аккаунт / Терминал',
                 accessor: 'account',
                 Cell: ({row}) => {
-                    return <AccountAndTerminal firstRowData={row.original.account.name}
-                                               secondRowData={row.original.terminal.name}/>
+                    return <AccountAndTerminal account={row.original.account.name}
+                                               terminal={row.original.terminal.name}/>
 
                 }
             },
