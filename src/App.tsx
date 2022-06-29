@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.scss';
-import OrdersTable from "./components/table/OrdersTable";
+// import OrdersTable from "./components/table/OrdersTable";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
 
   return (
     <div>
-      <OrdersTable />
+      <AppRouter />
     </div>
   );
 }

@@ -5,17 +5,17 @@ import {orderAPI} from "../../../api/table-api";
 export const useData = () => {
 
     const [mockData, setData] = useState<TableResponseType[]>([])
-    // const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        // setLoading(true)
+        setLoading(true)
         orderAPI.getOrder()
             .then((res) => {
                 setData(res.data)
-                // setLoading(false)
+                setLoading(false)
             })
     }, [])
 
 
-    return {mockData}
+    return {mockData, loading}
 }
