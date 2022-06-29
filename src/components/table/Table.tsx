@@ -3,6 +3,7 @@ import {HeaderGroup, Row, useTable, useSortBy, useGlobalFilter, usePagination} f
 import {CustomColumn} from "./types";
 import s from './Table.module.scss'
 import IdFilter from "./filter-table/IdFilter";
+import Pagination from "./pagination/Pagination";
 
 interface TableProps<T extends object> {
     columns: ReadonlyArray<CustomColumn<T>>;
@@ -18,6 +19,12 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
         page,
         nextPage,
         previousPage,
+        canNextPage,
+        canPreviousPage,
+        pageOptions,
+        gotoPage,
+        pageCount,
+        setPageSize,
         prepareRow,
         state,
         setGlobalFilter,
@@ -27,7 +34,8 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
         usePagination,
     )
 
-    const { globalFilter } = state;
+    // const {globalFilter} = state;
+    const {pageIndex, globalFilter, pageSize} = state
 
     return (
         <>
@@ -47,10 +55,18 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
                 })}
                 </tbody>
             </table>
-            <div>
-                <button onClick={()=> previousPage()}>Previous</button>
-                <button onClick={()=> nextPage()}>Next</button>
-            </div>
+            <Pagination
+                previousPage={previousPage}
+                nextPage={nextPage}
+                canNextPage={canNextPage}
+                canPreviousPage={canPreviousPage}
+                pageIndex={pageIndex}
+                pageOptions={pageOptions}
+                goToPage={gotoPage}
+                pageCount={pageCount}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+            />
         </>
     )
 
