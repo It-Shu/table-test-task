@@ -3,13 +3,13 @@ import React, {useMemo} from "react";
 import Table from "./Table";
 import {useData} from "./hooks/useData";
 import {TableResponseType} from "../../api/types";
-import NumberAndDate from "./TableCell/cell-components/NumberAndDate";
-import AccountAndTerminal from "./TableCell/cell-components/AccountAndTerminal";
-import s from './TableCell/cell-components/DataCell.module.scss'
-import Status from "./TableCell/cell-components/Status";
-import OrderTypeAndAuthor from "./TableCell/cell-components/OrderTypeAndAuthor";
+import NumberAndDate from "./cell-components/NumberAndDate";
+import AccountAndTerminal from "./cell-components/AccountAndTerminal";
+import s from './cell-components/Cell.module.scss'
+import Status from "./cell-components/Status";
+import OrderTypeAndAuthor from "./cell-components/OrderTypeAndAuthor";
 
-function DataTable() {
+function OrdersTable() {
 
     const {mockData} = useData()
 
@@ -20,7 +20,8 @@ function DataTable() {
                 accessor: 'id',
                 Cell: ({row}) => {
                     return <NumberAndDate id={row.original.id} created_date={row.original.created_date}/>
-                }
+                },
+                disableFilters: false
 
             },
             {
@@ -64,5 +65,5 @@ function DataTable() {
     </div>
 }
 
-export default DataTable;
+export default OrdersTable;
 

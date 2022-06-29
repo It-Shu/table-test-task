@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import s from './DataCell.module.scss'
+import s from './Cell.module.scss'
 
 interface DataCellType {
     firstRowData?: string

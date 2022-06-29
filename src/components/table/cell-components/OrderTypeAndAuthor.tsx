@@ -1,6 +1,6 @@
 import React from 'react';
-import s from "./DataCell.module.scss";
-import {convertingNameToInitials} from "../../tools";
+import s from "./Cell.module.scss";
+import {convertingNameToInitials} from "../tools";
 
 interface OrderTypeAndAuthorType {
     orderType: string

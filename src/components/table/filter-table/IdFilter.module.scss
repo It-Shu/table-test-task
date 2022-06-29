@@ -1,0 +1,17 @@
+.filterContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 10%;
+  margin-top: 10px;
+  align-items: center;
+  font-size: 20px;
+}
+.filterInput{
+  padding: 10px;
+  margin-left: 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

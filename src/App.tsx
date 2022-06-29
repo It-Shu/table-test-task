@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.scss';
-import DataTable from "./components/table/DataTable";
+import OrdersTable from "./components/table/OrdersTable";
 
 function App() {
 
   return (
     <div>
-      <DataTable />
+      <OrdersTable />
     </div>
   );
 }

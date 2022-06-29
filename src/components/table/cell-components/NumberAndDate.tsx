@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import { convertingDateDataToCurrentDate } from '../../tools';
-import s from "./DataCell.module.scss";
+import { convertingDateDataToCurrentDate } from '../tools';
+import s from "./Cell.module.scss";
 
 interface NumberAndDateType {
     id: number
