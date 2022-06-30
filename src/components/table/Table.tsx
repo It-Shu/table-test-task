@@ -95,7 +95,7 @@ function Table<T extends object>({columns, data, setCellValue}: TableProps<T>) {
         return <tr onClick={() => getCellValue(props.row.cells)} {...props.row.getRowProps()}>
             {props.row.cells.map(cell => {
                 return <td {...cell.getCellProps()} >
-                    <Link to={RoutesPaths.QueryParams}
+                    <Link  to={RoutesPaths.QueryParams}
                           className={s.link}>{cell.render('Cell')}</Link>
                 </td>;
             })}
