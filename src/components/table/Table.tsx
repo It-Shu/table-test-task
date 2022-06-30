@@ -45,7 +45,6 @@ function Table<T extends object>({columns, data, setCellValue}: TableProps<T>) {
         setCellValue(cell)
     }
 
-
     return (
         <>
 
@@ -97,8 +96,7 @@ function Table<T extends object>({columns, data, setCellValue}: TableProps<T>) {
         return <tr onClick={() => getCellValue(props.row.cells)} {...props.row.getRowProps()}>
             {props.row.cells.map(cell => {
                 return <td {...cell.getCellProps()} >
-                    {/*<Link to={`${RoutesPaths.OrderPage}'/'${numberOfOrder}'/' ${orderType}'/'${account}'/'${status}}`}*/}
-                    <Link to={RoutesPaths.OrderPage}
+                    <Link to={RoutesPaths.QueryParams}
                           className={s.link}>{cell.render('Cell')}</Link>
                 </td>;
             })}

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Status.module.scss'
 interface StatusType {
-    status: string | null
+    status: string | undefined
 }
 const Status = ({status}: StatusType) => {
 

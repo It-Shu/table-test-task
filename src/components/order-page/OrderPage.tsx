@@ -1,23 +1,19 @@
 import React from 'react';
 import {RoutesPaths} from "../../routes/routes";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import s from './OrderPage.module.scss'
 import Status from "../table/cell-components/Status";
 
-interface OrderPageType {
-    cellValue: any[]
-}
 
-const OrderPage = ({cellValue}: OrderPageType) => {
+const OrderPage = () => {
 
     let navigate = useNavigate()
     const back = () => {
         navigate(RoutesPaths.Home)
     }
-    const numberOfOrder = cellValue[0].value.toString()
-    const orderType = cellValue[1].value.name
-    const account = cellValue[2].value.name
-    const status = cellValue[3].value
+
+    const {id, order_page, account, status} = useParams()
+
     return (
         <>
             <h1 className={s.title}>ORDER PAGE</h1>
@@ -35,8 +31,8 @@ const OrderPage = ({cellValue}: OrderPageType) => {
                 </thead>
                 <tbody className={s.tableBody}>
                 <tr>
-                    <td>{numberOfOrder}</td>
-                    <td>{orderType}</td>
+                    <td>{id}</td>
+                    <td>{order_page}</td>
                     <td>{account}</td>
                     <td><Status status={status}/></td>
                 </tr>

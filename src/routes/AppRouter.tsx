@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
+import GetQueryParams from '../components/order-page/GetQueryParams';
 import OrderPage from '../components/order-page/OrderPage';
 import OrdersTable from '../components/table/OrdersTable';
 import { RoutesPaths } from './routes';
@@ -11,7 +12,8 @@ const AppRouter = () => {
     return (
         <Routes>
             <Route element={<OrdersTable setCellValue={setCellValue}/>} path={RoutesPaths.Home}/>
-            <Route element={<OrderPage cellValue={cellValue}/>} path={RoutesPaths.OrderPage}/>
+            <Route element={<GetQueryParams cellValue={cellValue}/>} path={RoutesPaths.QueryParams}/>
+            <Route element={<OrderPage />} path={RoutesPaths.OrderPageWithParams}/>
         </Routes>
     );
 
