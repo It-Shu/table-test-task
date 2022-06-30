@@ -1,16 +1,20 @@
 import React from 'react';
-import {HeaderGroup, Row, useTable, useSortBy, useGlobalFilter, usePagination} from 'react-table'
+import {HeaderGroup, Row, useTable, useSortBy, useGlobalFilter, usePagination, useRowSelect} from 'react-table'
 import {CustomColumn} from "./types";
 import s from './Table.module.scss'
 import IdFilter from "./filter-table/IdFilter";
 import Pagination from "./pagination/Pagination";
+import {Link} from "react-router-dom";
+import {RoutesPaths} from "../../routes/routes";
 
 interface TableProps<T extends object> {
     columns: ReadonlyArray<CustomColumn<T>>;
     data: ReadonlyArray<T>;
+    setCellValue: (value: any[]) => void
+
 }
 
-function Table<T extends object>({columns, data}: TableProps<T>) {
+function Table<T extends object>({columns, data, setCellValue}: TableProps<T>) {
 
     const {
         getTableProps,
@@ -32,13 +36,18 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
         useGlobalFilter,
         useSortBy,
         usePagination,
+        useRowSelect,
     )
 
-    // const {globalFilter} = state;
     const {pageIndex, globalFilter, pageSize} = state
+
+    const getCellValue = (cell: any[]) => {
+        setCellValue(cell)
+    }
 
     return (
         <>
+
             <IdFilter filter={globalFilter} setFilter={setGlobalFilter}/>
             <table {...getTableProps()} className={s.table}>
                 <thead>
@@ -48,13 +57,15 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
                     </tr>)}
                 </thead>
 
-                <tbody {...getTableBodyProps()}>
+                <tbody {...getTableBodyProps()} className={s.tableBody}>
                 {page.map(row => {
                     prepareRow(row);
-                    return <TableRow row={row} key={row.id}/>;
-                })}
+                    return <TableRow row={row} key={row.id}/>
+                })
+                }
                 </tbody>
             </table>
+
             <Pagination
                 previousPage={previousPage}
                 nextPage={nextPage}
@@ -68,7 +79,9 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
                 setPageSize={setPageSize}
             />
         </>
+
     )
+
 
     function TableHeader<T extends object>(props: { header: HeaderGroup<T> }) {
         return <th {...props.header.getHeaderProps(props.header.getSortByToggleProps())} className={s.tableTH}>
@@ -80,14 +93,17 @@ function Table<T extends object>({columns, data}: TableProps<T>) {
     }
 
     function TableRow<T extends object>(props: { row: Row<T> }) {
-        return <tr {...props.row.getRowProps()}>
+        return <tr onClick={() => getCellValue(props.row.cells)} {...props.row.getRowProps()}>
             {props.row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>
-                    {cell.render('Cell')}
+                return <td {...cell.getCellProps()} >
+                    <Link to={RoutesPaths.QueryParams}
+                          className={s.link}>{cell.render('Cell')}</Link>
                 </td>;
             })}
-        </tr>;
+        </tr>
+
     }
+
 }
 
 export default Table;

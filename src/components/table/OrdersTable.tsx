@@ -9,9 +9,14 @@ import s from './cell-components/Cell.module.scss'
 import Status from "./cell-components/Status";
 import OrderTypeAndAuthor from "./cell-components/OrderTypeAndAuthor";
 
-function OrdersTable() {
+interface OrdersTableType {
+    setCellValue: (value: any[]) => void
+}
 
-    const {mockData} = useData()
+function OrdersTable({setCellValue}: OrdersTableType) {
+
+    const {mockData, loading} = useData()
+
 
     const staticColumns: CustomColumn<TableResponseType>[] =
         [
@@ -21,7 +26,6 @@ function OrdersTable() {
                 Cell: ({row}) => {
                     return <NumberAndDate id={row.original.id} created_date={row.original.created_date}/>
                 },
-                disableFilters: false
 
             },
             {
@@ -42,13 +46,13 @@ function OrdersTable() {
                 Cell: ({row}) => {
                     return <AccountAndTerminal account={row.original.account.name}
                                                terminal={row.original.terminal.name}/>
-
                 }
             },
             {
                 Header: 'Статус',
                 accessor: 'status',
                 Cell: ({row}) => {
+
                     return <div className={s.dataCellContainer}>
                         <Status status={row.original.status}/>
                     </div>
@@ -60,8 +64,14 @@ function OrdersTable() {
     const columns = useMemo(() => staticColumns, [staticColumns])
     const data = useMemo(() => mockData, [mockData])
 
+    if (loading) return <div>LOADING...</div>
+
     return <div>
-        <Table data={data} columns={columns}/>
+        <Table
+            data={data}
+            columns={columns}
+            setCellValue={setCellValue}
+        />
     </div>
 }
 
