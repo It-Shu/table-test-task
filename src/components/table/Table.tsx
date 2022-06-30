@@ -47,7 +47,6 @@ function Table<T extends object>({columns, data, setCellValue}: TableProps<T>) {
 
     return (
         <>
-
             <IdFilter filter={globalFilter} setFilter={setGlobalFilter}/>
             <table {...getTableProps()} className={s.table}>
                 <thead>
